@@ -1,19 +1,47 @@
 package encryptionproject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class findFactors {
 	
-	public static int num = 12;
-	public static int[] factors = {0,1,2,3,4,5,6,7,8,9,10,11,12};
 	
-	public static void findFactors() {
+	public static ArrayList<Integer> findFactors(int num ) {
+		
+		ArrayList<Integer> factors = new ArrayList<Integer>();
 		
 		for(int a = 1;a <= num; a++) {
 			if(num % a == 0)	{
-				//factors[a] = a;
-				System.out.println(factors[a]);
+				factors.add(a);
+				
 			}
-			//System.out.print(factors[a]);
+			
 		}
+		return factors;
+		//isNotPrime(factors);
+	}
+//I Am having trouble connecting the two methods together the command to do what i want
+	
+	
+	public static ArrayList<Integer> isNotPrime(ArrayList<Integer> fList) {
+	
+		ArrayList<Integer> notPrime = new ArrayList<Integer>();
+			
+		for(int a = 0;a <fList.size();a++) {
+			
+			//int num = factors.get(a);
+			
+			for(int i = 2;i <= fList.get(a);i++) {
+				
+				if((fList.get(a) % i == 0)&&(fList.get(a) != i)) {
+					notPrime.add(fList.get(a));
+					break;
+					
+				}
+			
+			}
+		}
+		return notPrime;
 	}
 
 	
@@ -21,10 +49,9 @@ public class findFactors {
 	
 	
 	
-	
 	public static void main(String[] args) {
-		//System.out.print("hi");
-		findFactors();
+		System.out.print(findFactors(4));
+		
 
 	}
 
