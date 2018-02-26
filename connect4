@@ -1,0 +1,23 @@
+package connect4;
+
+public class connectFourGame {
+	//6 columns and 7rows 
+	public static int[][] grid = new int[6][7];
+	public static void main(String[] args) {
+		
+	display();	
+
+	}
+	
+	private static void display() {
+		for()
+		
+	}
+
+	private static void move(int column, int row) {
+		grid[column][row] = 1;
+		
+		
+	}
+	
+	
