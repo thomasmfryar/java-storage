@@ -3,21 +3,34 @@ package connect4;
 public class connectFourGame {
 	//6 columns and 7rows 
 	public static int[][] grid = new int[6][7];
+	
+	
+	//private static void display() {
+		
+		
+	//}
+
+	public static int findRowHelper(int column) {
+		for(int r = grid.length - 1;r >= 0;r--) {
+			if(grid[r][column] == 1) {
+				System.out.println("row # "+ r + " is full");
+				return -1;
+			}
+			else {
+				System.out.println("row # "+ r + " is empty");
+				return r;
+				
+			}
+		}
+		return -1;
+		
+	}
+	
 	public static void main(String[] args) {
-		
-	display();	
+		grid[0][0] = 0;
+		grid[1][1] = 1;
+		findRowHelper(0);
+		//display();	
 
 	}
-	
-	private static void display() {
-		for()
-		
-	}
-
-	private static void move(int column, int row) {
-		grid[column][row] = 1;
-		
-		
-	}
-	
 	
