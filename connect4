@@ -5,7 +5,7 @@ public class connectFourGame {
         public static int[][] grid = new int[6][7];
         public static Scanner playerInput = new Scanner(System.in);
 
-
+        //displays the game board
         private static void display() {
                 for(int r=0;r<= grid[0].length -1;r++){
                         for(int c = 0;c <=grid.length -1;c++){
@@ -16,7 +16,7 @@ public class connectFourGame {
                 }
 
         }
-
+        //checks if the chosen column is full
         public static int checkIfColumnIsFull(int column){
                 if(grid[column][0] == 1) {
                         System.out.println("the column chosen is full");
@@ -27,7 +27,7 @@ public class connectFourGame {
         }
 
 
-
+        //makes the move of the player
         //i need to decide whether to make it voided or not
         public static int move(int column){
            if(checkIfColumnIsFull(column) == 1){
@@ -40,7 +40,7 @@ public class connectFourGame {
         }
 
 
-
+        //Helps find the next availbale row to put the input value based on the column chosen
         public static int findRowHelper(int column) {
         	
                 for(int r = grid[0].length - 1;r >= 0;r--) {
@@ -54,16 +54,30 @@ public class connectFourGame {
                 return -1;
 
         }
-
+        //gets whatever the input is and does whatever u want with it
         public static int getPlayerInput() {
-			int input = playerInput.nextInt();
+        		int input = playerInput.nextInt();
+        		
+        		
+        		while(checkIfColumnExists(input) == -1) {
+        			print("Column doesnt exist. PLEASE TRY AGAIN.");
+        			input = playerInput.nextInt();
+        			
+        		}
 			return input;
 			
         }
+        //this checks if the input is a non-existent column or not
+        // sure to change grid.length -1 to grid.length bc i will eventually change the entire program to work with the columns 1-7 instead of 0-6
+        public static int checkIfColumnExists(int input) {
+        		if((input > grid.length - 1) || (input < 0)) {
+        			return -1;
+        			
+        		}
+				return input;
+        }
 
-
-
-
+        //main method that does all the commands all the functions and when the game ends for now
         	public static void main(String[] args) {
         		boolean playing = true;
         		while(playing == true) {
@@ -76,10 +90,10 @@ public class connectFourGame {
             
         }
 
-
-    public static void print(String text){
-       System.out.println(text);
-    }
+        	//this makes is much easily to print out String values instead of System.out.print
+        	public static void print(String text){
+        		System.out.println(text);
+        	}
 }
 
 /*
@@ -99,5 +113,4 @@ public class connectFourGame {
 	
 	
 	
-
 
