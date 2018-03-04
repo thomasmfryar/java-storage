@@ -1,36 +1,75 @@
-package connect4;
-
+import java.util.Scanner;
 public class connectFourGame {
-	//6 columns and 7rows 
-	public static int[][] grid = new int[6][7];
-	
-	
-	//private static void display() {
-		
-		
-	//}
+        //6 columns and 7rows
+        public static int[][] grid = new int[6][7];
+        public static Scanner playerInput = new Scanner(System.in);
 
-	public static int findRowHelper(int column) {
-		for(int r = grid.length - 1;r >= 0;r--) {
-			if(grid[r][column] == 1) {
-				System.out.println("row # "+ r + " is full");
-				return -1;
-			}
-			else {
-				System.out.println("row # "+ r + " is empty");
-				return r;
-				
-			}
-		}
-		return -1;
-		
-	}
-	
-	public static void main(String[] args) {
-		grid[0][0] = 0;
-		grid[1][1] = 1;
-		findRowHelper(0);
-		//display();	
 
-	}
-	
+        private static void display() {
+                for(int r=0;r<= grid[0].length -1;r++){
+                        for(int c = 0;c <=grid.length -1;c++){
+                                System.out.print(grid[c][r] +"     ");
+
+                        }
+                        System.out.println(" ");
+                }
+
+        }
+
+        public static int checkIfColumnIsFull(int column){
+                if(grid[column][0] == 1) {
+                        System.out.println("is full");
+                        return 1;
+                }
+                return 0;
+
+        }
+
+
+
+        //ineed to decide whether to make it voided or not
+        public static void move(int column){
+           if(checkIsFull(column) == 1){
+               return -1;
+           }
+           grid[column][findRowHelper(column)] = 1;
+           break;
+
+
+        }
+
+
+
+        public static int findRowHelper(int column) {
+
+                for(int r = grid.length -1;r >= 0;r--) {
+                        if(grid[column][r] == 0) {
+                                System.out.println("row # "+ (r+1) + " is the next empty");
+                                return r;
+                        }
+
+                }
+                return -1;
+
+        }
+
+        public static void moveDialog(){
+            print("pick the column");
+        }
+
+
+
+
+        public static void main(String[] args) {
+                print(moveDialog);
+                //display();
+
+                //findRowHelper(1);
+
+
+        }
+}
+
+    public static void print(String text){
+       System.out.println(text);
+    }
