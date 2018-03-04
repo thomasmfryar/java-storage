@@ -1,3 +1,4 @@
+package connect4;
 import java.util.Scanner;
 public class connectFourGame {
         //6 columns and 7rows
@@ -18,7 +19,7 @@ public class connectFourGame {
 
         public static int checkIfColumnIsFull(int column){
                 if(grid[column][0] == 1) {
-                        System.out.println("is full");
+                        System.out.println("the column chosen is full");
                         return 1;
                 }
                 return 0;
@@ -27,13 +28,13 @@ public class connectFourGame {
 
 
 
-        //ineed to decide whether to make it voided or not
-        public static void move(int column){
-           if(checkIsFull(column) == 1){
+        //i need to decide whether to make it voided or not
+        public static int move(int column){
+           if(checkIfColumnIsFull(column) == 1){
                return -1;
            }
            grid[column][findRowHelper(column)] = 1;
-           break;
+           return 1;
 
 
         }
@@ -41,11 +42,12 @@ public class connectFourGame {
 
 
         public static int findRowHelper(int column) {
-
-                for(int r = grid.length -1;r >= 0;r--) {
+        	
+                for(int r = grid[0].length - 1;r >= 0;r--) {
                         if(grid[column][r] == 0) {
-                                System.out.println("row # "+ (r+1) + " is the next empty");
-                                return r;
+                        		
+                        		return r;
+                        		
                         }
 
                 }
@@ -53,23 +55,49 @@ public class connectFourGame {
 
         }
 
-        public static void moveDialog(){
-            print("pick the column");
+        public static int getPlayerInput() {
+			int input = playerInput.nextInt();
+			return input;
+			
         }
 
 
 
 
-        public static void main(String[] args) {
-                print(moveDialog);
-                //display();
-
-                //findRowHelper(1);
-
-
+        	public static void main(String[] args) {
+        		boolean playing = true;
+        		while(playing == true) {
+        			display();
+        			print("pick a column");
+        			move(getPlayerInput());
+        		}
+        		
+        		
+            
         }
-}
+
 
     public static void print(String text){
        System.out.println(text);
     }
+}
+
+/*
+ * NOTES:
+ * 
+ * -make a thing that errors if the player does a number out of the array
+ * 	^-make a "checkIfColumnExits" type of method
+ * - make the players have different number to put in the board so they don't get mixed up
+ * - find a way for the computer to tell if a player has 4 in a row vertically horizontally or diagonal
+ */
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
