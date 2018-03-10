@@ -1,12 +1,13 @@
 package connect4;
 import java.util.Scanner;
-public class connectFourGame {
-        //6 columns and 7rows
-        public static int[][] grid = new int[6][7];
-        public static Scanner playerInput = new Scanner(System.in);
+public class ConnectFourGame {
 
+        //6 columns and 7rows
+        public int[][] grid = new int[6][7];
+        public Scanner playerInput = new Scanner(System.in);
+                boolean turn;
         //displays the game board
-        private static void display() {
+        private void display() {
                 for(int r=0;r<= grid[0].length -1;r++){
                         for(int c = 0;c <=grid.length -1;c++){
                                 System.out.print(grid[c][r] +"     ");
@@ -17,7 +18,7 @@ public class connectFourGame {
 
         }
         //checks if the chosen column is full
-        public static int checkIfColumnIsFull(int column){
+        public int checkIfColumnIsFull(int column){
                 if(grid[column][0] == 1) {
                         System.out.println("the column chosen is full");
                         return 1;
@@ -29,25 +30,29 @@ public class connectFourGame {
 
         //makes the move of the player
         //i need to decide whether to make it voided or not
-        public static int move(int column){
+        public int move(int column){
            if(checkIfColumnIsFull(column) == 1){
                return -1;
            }
-           grid[column][findRowHelper(column)] = 1;
-           return 1;
+
+          grid[column][findRowHelper(column)] = turn ? 1 : 2;
+
+          turn = !turn;
+
+          return 1;
 
 
         }
 
 
         //Helps find the next availbale row to put the input value based on the column chosen
-        public static int findRowHelper(int column) {
-        	
+        public int findRowHelper(int column) {
+
                 for(int r = grid[0].length - 1;r >= 0;r--) {
                         if(grid[column][r] == 0) {
-                        		
-                        		return r;
-                        		
+
+                                        return r;
+
                         }
 
                 }
@@ -55,62 +60,58 @@ public class connectFourGame {
 
         }
         //gets whatever the input is and does whatever u want with it
-        public static int getPlayerInput() {
-        		int input = playerInput.nextInt();
-        		
-        		
-        		while(checkIfColumnExists(input) == -1) {
-        			print("Column doesnt exist. PLEASE TRY AGAIN.");
-        			input = playerInput.nextInt();
-        			
-        		}
-			return input;
-			
+        public int getPlayerInput() {
+                        int input = playerInput.nextInt();
+
+
+                        while(checkIfColumnExists(input) == -1) {
+                                print("Column doesnt exist. PLEASE TRY AGAIN.");
+                                input = playerInput.nextInt();
+
+                        }
+                        return input;
+
         }
         //this checks if the input is a non-existent column or not
         // sure to change grid.length -1 to grid.length bc i will eventually change the entire program to work with the columns 1-7 instead of 0-6
-        public static int checkIfColumnExists(int input) {
-        		if((input > grid.length - 1) || (input < 0)) {
-        			return -1;
-        			
-        		}
-				return input;
+        public int checkIfColumnExists(int input) {
+                        if((input > grid.length - 1) || (input < 0)) {
+                                return -1;
+
+                        }
+                                return input;
         }
+
+
 
         //main method that does all the commands all the functions and when the game ends for now
-        	public static void main(String[] args) {
-        		boolean playing = true;
-        		while(playing == true) {
-        			display();
-        			print("pick a column");
-        			move(getPlayerInput());
-        		}
-        		
-        		
-            
+                public static void main(String[] args) {
+               ConnectFourGame theGame = new ConnectFourGame();
+
+                        boolean playing = true;
+                        //while(playing == true) {
+                                theGame.display();
+                                theGame.print("pick a column");
+                                theGame.move(getPlayerInput());
+                        //}
+
+
+
         }
 
-        	//this makes is much easily to print out String values instead of System.out.print
-        	public static void print(String text){
-        		System.out.println(text);
-        	}
+                //this makes is much easily to print out String values instead of System.out.print
+                public void print(String text){
+                        System.out.println(text);
+                }
 }
 
 /*
  * NOTES:
- * 
+ *
  * -make a thing that errors if the player does a number out of the array
- * 	^-make a "checkIfColumnExits" type of method
+ *      ^-make a "checkIfColumnExits" type of method
  * - make the players have different number to put in the board so they don't get mixed up
  * - find a way for the computer to tell if a player has 4 in a row vertically horizontally or diagonal
  */
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 
