@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<form method=post>
+    <dl>
+      <dt>Username:
+      <dd><input type=text name=username value="{{request.form.userSignUp }}">
+      <dt>Password:
+      <dd><input type=password name=signUpPassword>
+    </dl>
+    <p><input type=submit value="sign up">
+  </form>
+
+
+{% endblock %}
